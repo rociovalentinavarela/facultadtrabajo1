@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef } from 'react'
-import { WEEKS, newAction, newArea } from './data'
+import { WEEKS, areaVars, newAction, newArea } from './data'
 import { Color, IconBtn, T, Txt, useApp } from './ui'
 
 const NEXT = { 0: '2', 2: '1', 1: '0' } // vacio -> pleno -> claro -> vacio
@@ -81,7 +81,7 @@ export default function Gantt() {
           <tbody>
             {data.areas.map((ar, ai) => (
               <Fragment key={ar.id}>
-                <tr className="area-row" style={{ '--c': ar.color }}>
+                <tr className="area-row" style={areaVars(ar.color, data.theme.surface)}>
                   <th className="left">
                     <T value={ar.name} onChange={(v) => update((d) => void (d.areas[ai].name = v))} />
                   </th>
@@ -110,7 +110,7 @@ export default function Gantt() {
                   </td>
                 </tr>
                 {ar.actions.map((a, ci) => (
-                  <tr key={a.id} className="action-row" style={{ '--c': ar.color }}>
+                  <tr key={a.id} className="action-row" style={areaVars(ar.color, data.theme.surface)}>
                     <th className="left">
                       <T className="code" value={a.code} onChange={(v) => update((d) => void (d.areas[ai].actions[ci].code = v))} />
                       <T className="aname" value={a.name} onChange={(v) => update((d) => void (d.areas[ai].actions[ci].name = v))} />

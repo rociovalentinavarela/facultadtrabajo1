@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Budget from './Budget'
+import { themeVars } from './data'
 import Gantt from './Gantt'
 import { useDocument } from './store'
 import { Color, Ctx, Txt } from './ui'
@@ -29,7 +30,7 @@ export default function App() {
     <Ctx.Provider value={{ data, update, edit }}>
       <div
         className={`app ${edit ? 'is-edit' : ''}`}
-        style={{ '--paper': t.paper, '--surface': t.surface, '--ink': t.ink, '--accent': t.accent }}
+        style={themeVars(t)}
       >
         <header className="top">
           <div className="brand">

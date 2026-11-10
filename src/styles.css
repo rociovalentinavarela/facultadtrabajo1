@@ -9,10 +9,6 @@ body {
 }
 
 .app {
-  --line: color-mix(in srgb, var(--ink) 12%, var(--surface));
-  --line-strong: color-mix(in srgb, var(--ink) 24%, var(--surface));
-  --muted: color-mix(in srgb, var(--ink) 62%, var(--surface));
-  --wash: color-mix(in srgb, var(--ink) 4%, var(--surface));
   --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
 
@@ -278,23 +274,23 @@ main,
   border-radius: 2px;
 }
 .lg-full {
-  background: color-mix(in srgb, var(--ink) 70%, var(--surface));
+  background: var(--lg-full);
 }
 .lg-light {
-  background: color-mix(in srgb, var(--ink) 22%, var(--surface));
+  background: var(--lg-light);
 }
 
 /* ---------- Edicion en el lugar ---------- */
 .editable {
   outline: none;
   border-radius: 2px;
-  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: inset 0 -1px 0 var(--accent);
   cursor: text;
   min-width: 1ch;
 }
 .editable:hover,
 .editable:focus {
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  background: var(--accent-soft);
 }
 .icon-btn {
   font: 600 14px/1 var(--sans);
@@ -310,7 +306,7 @@ main,
 }
 .icon-btn:hover {
   opacity: 1;
-  background: color-mix(in srgb, #b3261e 12%, transparent);
+  background: #f6e0de;
 }
 .num-input {
   width: 100%;
@@ -319,7 +315,7 @@ main,
   font-variant-numeric: tabular-nums;
   text-align: right;
   color: var(--ink);
-  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  background: var(--accent-soft);
   border: 1px solid var(--line-strong);
   border-radius: 3px;
   padding: 3px 6px;
@@ -396,8 +392,8 @@ th {
   border-right-color: var(--c);
 }
 .area-row td {
-  background: color-mix(in srgb, var(--c) 12%, var(--surface));
-  border-bottom-color: color-mix(in srgb, var(--c) 35%, var(--surface));
+  background: var(--c-soft);
+  border-bottom-color: var(--c-line);
   padding: 0 10px;
 }
 .row-tools {
@@ -437,7 +433,7 @@ th {
   background: var(--c);
 }
 .wk.light i {
-  background: color-mix(in srgb, var(--c) 32%, var(--surface));
+  background: var(--c-light);
 }
 .wk.start i {
   margin-left: 2px;
@@ -453,7 +449,7 @@ th {
   cursor: pointer;
 }
 .is-edit .wk:hover {
-  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 55%, transparent);
+  box-shadow: inset 0 0 0 2px var(--c-line);
 }
 
 /* Presupuesto: resumen */
@@ -545,7 +541,7 @@ th {
 .premises ul {
   margin: 10px 0 0;
   padding-left: 18px;
-  color: color-mix(in srgb, var(--ink) 82%, var(--surface));
+  color: var(--body);
   font-size: 13px;
   max-width: 130ch;
 }
@@ -607,14 +603,14 @@ th {
 }
 .budget td.sub {
   font-weight: 600;
-  background: color-mix(in srgb, var(--c) 7%, var(--surface));
+  background: var(--c-faint);
 }
 .budget tfoot th,
 .budget tfoot td {
   font-weight: 600;
   border-top: 1px solid var(--ink);
   border-bottom: 0;
-  background: color-mix(in srgb, var(--c) 12%, var(--surface));
+  background: var(--c-soft);
 }
 .budget tfoot th {
   font-size: 11.5px;

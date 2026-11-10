@@ -1,4 +1,4 @@
-import { actionTotal, areaTotal, grandTotal, money, newAction, newResource, pct, resTotal } from './data'
+import { actionTotal, areaTotal, areaVars, grandTotal, money, newAction, newResource, pct, resTotal } from './data'
 import { IconBtn, Num, T, Txt, useApp } from './ui'
 
 export default function Budget() {
@@ -91,7 +91,7 @@ export default function Budget() {
       {/* Detalle */}
       <Txt k="detailTitle" as="h3" className="detail-title" />
       {data.areas.map((ar, ai) => (
-        <div key={ar.id} className="area-block" style={{ '--c': ar.color }}>
+        <div key={ar.id} className="area-block" style={areaVars(ar.color, data.theme.surface)}>
           <div className="area-band">
             <T value={ar.name} onChange={(v) => update((d) => void (d.areas[ai].name = v))} />
             <span>{money(areaTotal(ar), cur)}</span>

@@ -195,6 +195,45 @@ export const newAction = () => ({
 })
 export const newResource = () => ({ id: uid(), desc: 'Nuevo recurso', unit: 'mes', price: 0, times: 1 })
 
+// Mezcla dos colores hex (t = proporcion de "a"). Se calcula aca y no con
+// color-mix() de CSS para que funcione en cualquier navegador.
+function hexToRgb(h) {
+  let s = String(h || '').replace('#', '')
+  if (s.length === 3) s = s.replace(/./g, '$&$&')
+  const n = parseInt(s, 16)
+  return Number.isNaN(n) ? [128, 128, 128] : [(n >> 16) & 255, (n >> 8) & 255, n & 255]
+}
+export function mix(a, b, t) {
+  const x = hexToRgb(a)
+  const y = hexToRgb(b)
+  return '#' + x.map((v, i) => Math.round(v * t + y[i] * (1 - t)).toString(16).padStart(2, '0')).join('')
+}
+
+// Tonos de un area sobre el color de las hojas
+export const areaVars = (color, surface) => ({
+  '--c': color,
+  '--c-light': mix(color, surface, 0.4), // seguimiento / actualizacion periodica
+  '--c-line': mix(color, surface, 0.35),
+  '--c-soft': mix(color, surface, 0.12),
+  '--c-faint': mix(color, surface, 0.07),
+})
+
+// Tonos neutros derivados del tema
+export const themeVars = (t) => ({
+  '--paper': t.paper,
+  '--surface': t.surface,
+  '--ink': t.ink,
+  '--accent': t.accent,
+  '--line': mix(t.ink, t.surface, 0.12),
+  '--line-strong': mix(t.ink, t.surface, 0.24),
+  '--muted': mix(t.ink, t.surface, 0.62),
+  '--wash': mix(t.ink, t.surface, 0.04),
+  '--body': mix(t.ink, t.surface, 0.82),
+  '--lg-full': mix(t.ink, t.surface, 0.7),
+  '--lg-light': mix(t.ink, t.surface, 0.22),
+  '--accent-soft': mix(t.accent, t.surface, 0.1),
+})
+
 // Totales
 export const resTotal = (r) => (Number(r.price) || 0) * (Number(r.times) || 0)
 export const actionTotal = (a) => a.resources.reduce((s, r) => s + resTotal(r), 0)
